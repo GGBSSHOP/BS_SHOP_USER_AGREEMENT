@@ -3,14 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Meta-теги для системных кнопок навигации -->
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#2d2d2d" media="(prefers-color-scheme: dark)">
-    <meta name="msapplication-navbutton-color" content="#ffffff">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    
     <title>BS_SHOP</title>
     <style>
         @font-face {
@@ -32,7 +24,6 @@
             background-attachment: fixed;
             color: #000000;
             line-height: 1.6;
-            transition: background-color 0.3s ease;
         }
 
         .main-card {
@@ -43,7 +34,6 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
             max-width: 800px;
             backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
         }
 
         body.dark-theme .main-card {
@@ -54,20 +44,17 @@
             font-size: 2.2em;
             margin-bottom: 20px;
             color: #000000;
-            transition: color 0.3s ease;
         }
 
         h2 {
             font-size: 1.6em;
             margin-bottom: 15px;
             color: #000000;
-            transition: color 0.3s ease;
         }
 
         p {
             margin-bottom: 15px;
             color: #000000;
-            transition: color 0.3s ease;
         }
 
         .header {
@@ -124,7 +111,6 @@
         .sidebar h3 {
             color: #000000;
             margin-bottom: 20px;
-            transition: color 0.3s ease;
         }
 
         body.dark-theme .sidebar h3 {
@@ -182,11 +168,6 @@
         body.dark-theme .monospace {
             color: #ffffff;
         }
-
-        /* Плавные переходы для всех изменяемых элементов */
-        body.dark-theme {
-            background-color: #1a1a1a;
-        }
     </style>
 </head>
 <body>
@@ -228,72 +209,8 @@
         function toggleTheme() {
             const body = document.body;
             const themeBtn = document.querySelector('.theme-btn');
-            const isDarkTheme = body.classList.toggle('dark-theme');
-            
-            // Обновляем текст кнопки
-            themeBtn.textContent = isDarkTheme ? 'Светлая тема' : 'Тёмная тема';
-            
-            // Обновляем meta-теги для системных кнопок
-            updateThemeMeta(isDarkTheme);
-        }
-
-        function updateThemeMeta(isDark) {
-            // Находим все meta-теги theme-color
-            const themeColorMetas = document.querySelectorAll('meta[name="theme-color"]');
-            const msThemeColor = document.querySelector('meta[name="msapplication-navbutton-color"]');
-            const appleStatusBar = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
-            
-            // Обновляем значения
-            const newColor = isDark ? '#2d2d2d' : '#ffffff';
-            const newStatusBarStyle = isDark ? 'black-translucent' : 'default';
-            
-            themeColorMetas.forEach(meta => {
-                meta.setAttribute('content', newColor);
-            });
-            
-            if (msThemeColor) {
-                msThemeColor.setAttribute('content', newColor);
-            }
-            
-            if (appleStatusBar) {
-                appleStatusBar.setAttribute('content', newStatusBarStyle);
-            }
-        }
-
-        // Инициализация при загрузке страницы
-        document.addEventListener('DOMContentLoaded', function() {
-            // Проверяем системные предпочтения темы
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const body = document.body;
-            const themeBtn = document.querySelector('.theme-btn');
-            
-            // Если система в темной теме, применяем её
-            if (prefersDark && !body.classList.contains('dark-theme')) {
-                body.classList.add('dark-theme');
-                themeBtn.textContent = 'Светлая тема';
-                updateThemeMeta(true);
-            } else {
-                updateThemeMeta(false);
-            }
-            
-            // Слушаем изменения системной темы
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-                if (!localStorage.getItem('theme')) { // Если пользователь не менял тему вручную
-                    const isDark = e.matches;
-                    body.classList.toggle('dark-theme', isDark);
-                    themeBtn.textContent = isDark ? 'Светлая тема' : 'Тёмная тема';
-                    updateThemeMeta(isDark);
-                }
-            });
-        });
-
-        // Сохранение выбора темы (опционально)
-        function saveThemePreference(isDark) {
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        }
-
-        function loadThemePreference() {
-            return localStorage.getItem('theme');
+            body.classList.toggle('dark-theme');
+            themeBtn.textContent = body.classList.contains('dark-theme') ? 'Светлая тема' : 'Тёмная тема';
         }
     </script>
 </body>
