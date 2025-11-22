@@ -14,7 +14,7 @@
         }
 
         body {
-            font-family: 'Roboto', sans-serif; /* Твой шрифт - можно поменять */
+            font-family: 'Noto Sans Runic', sans-serif; /* Твой шрифт - можно поменять */
             background-image: url('https://images.unsplash.com/photo-1505506874110-6a7a69069a08?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); /* Твой фон - замени ссылку */
             background-size: cover;
             background-position: center;
