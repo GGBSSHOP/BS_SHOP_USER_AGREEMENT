@@ -8,11 +8,7 @@
         /* Подключение кастомного шрифта */
         @font-face {
             font-family: 'MyCustomFont';
-            src: url('dMC.ttf') form .at('truetype'),
-                 url('fonts/myfont.woff') format('woff'),
-                 url('fonts/myfont.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
+            src: url('dMC.ttf') format('truetype');
         }
 
         /* Базовые стили */
@@ -23,19 +19,19 @@
         }
 
         body {
-            font-family: 'MyCustomFont', Arial, sans-serif; /* Твой кастомный шрифт */
-            background-image: url('images/background.jpg'); /* Твой фон */
+            font-family: 'MyCustomFont', Arial, sans-serif;
+            background-image: url('Без названия181_20251122163802.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            color: #000000; /* Чёрный текст всегда */
+            color: #000000;
             line-height: 1.6;
             transition: all 0.3s ease;
         }
 
         /* Главная плашка */
         .main-card {
-            background-color: rgba(255, 255, 255, 0.95); /* Белая с прозрачностью */
+            background-color: rgba(255, 255, 255, 0.95);
             margin: 40px auto;
             padding: 40px;
             border-radius: 12px;
@@ -45,12 +41,12 @@
             backdrop-filter: blur(10px);
         }
 
-        /* Тёмная тема - меняется только плашка */
+        /* Тёмная тема */
         body.dark-theme .main-card {
-            background-color: rgba(45, 45, 45, 0.95); /* Тёмная с прозрачностью */
+            background-color: rgba(45, 45, 45, 0.95);
         }
 
-        /* Заголовки - всегда чёрные в плашке */
+        /* Заголовки */
         h1 {
             font-size: 2.2em;
             margin-bottom: 20px;
@@ -66,14 +62,14 @@
             font-weight: 400;
         }
 
-        /* Текст - всегда чёрный */
+        /* Текст */
         p {
             margin-bottom: 15px;
             font-size: 1.1em;
             color: #000000;
         }
 
-        /* Хеддер с кнопками */
+        /* Хеддер */
         .header {
             display: flex;
             justify-content: space-between;
@@ -183,7 +179,7 @@
             background-color: rgba(255, 255, 255, 0.1);
         }
 
-        /* Оверлей для меню */
+        /* Оверлей */
         .overlay {
             position: fixed;
             top: 0;
@@ -199,7 +195,7 @@
             display: block;
         }
 
-        /* Стили для контента */
+        /* Контент */
         .content {
             margin-top: 20px;
         }
@@ -219,7 +215,7 @@
         <button class="theme-btn" onclick="toggleTheme()">Тёмная тема</button>
     </div>
 
-    <!-- Оверлей для меню -->
+    <!-- Оверлей -->
     <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
     <!-- Боковое меню -->
@@ -247,7 +243,6 @@
     </div>
 
     <script>
-        // Переключение меню
         function toggleMenu() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
@@ -255,7 +250,6 @@
             overlay.classList.toggle('active');
         }
 
-        // Переключение темы
         function toggleTheme() {
             const body = document.body;
             const themeBtn = document.querySelector('.theme-btn');
@@ -269,7 +263,6 @@
             }
         }
 
-        // Закрытие меню при клике на ссылку
         document.querySelectorAll('.sidebar a').forEach(link => {
             link.addEventListener('click', () => {
                 toggleMenu();
