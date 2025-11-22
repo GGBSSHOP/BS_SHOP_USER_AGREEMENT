@@ -64,7 +64,7 @@
             padding: 20px 40px;
         }
 
-        .menu-btn {
+        .menu-btn, .theme-btn {
             background: rgba(255, 255, 255, 0.9);
             border: none;
             color: #000000;
@@ -72,15 +72,20 @@
             cursor: pointer;
             padding: 10px 15px;
             border-radius: 6px;
+            transition: all 0.3s ease;
         }
 
         .theme-btn {
-            background: rgba(255, 255, 255, 0.9);
-            color: #000000;
-            border: none;
+            font-size: 16px;
             padding: 10px 20px;
             border-radius: 20px;
-            cursor: pointer;
+        }
+
+        body.dark-theme .menu-btn,
+        body.dark-theme .theme-btn {
+            background: rgba(45, 45, 45, 0.9);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .sidebar {
@@ -117,10 +122,20 @@
             text-decoration: none;
             padding: 8px 12px;
             display: block;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .sidebar a:hover {
+            background-color: rgba(0, 0, 0, 0.1);
         }
 
         body.dark-theme .sidebar a {
             color: #ffffff;
+        }
+
+        body.dark-theme .sidebar a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
         .overlay {
@@ -141,6 +156,17 @@
         .monospace {
             font-family: 'Courier New', monospace;
             letter-spacing: 2px;
+        }
+
+        /* Стили для темной темы */
+        body.dark-theme h1,
+        body.dark-theme h2,
+        body.dark-theme p {
+            color: #ffffff;
+        }
+
+        body.dark-theme .monospace {
+            color: #ffffff;
         }
     </style>
 </head>
