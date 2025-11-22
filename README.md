@@ -1,0 +1,2 @@
+# BS_SHOP_USER_AGREEMENT
+Пользовательское соглашение BS_SHOP
