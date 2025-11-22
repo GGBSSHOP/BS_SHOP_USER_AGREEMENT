@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BS_SHOP</title>
     <style>
-        /* Подключение кастомного шрифта */
         @font-face {
             font-family: 'MyCustomFont';
             src: url('dMC.ttf') format('truetype');
         }
 
-        /* Базовые стили */
         * {
             margin: 0;
             padding: 0;
@@ -20,16 +18,14 @@
 
         body {
             font-family: 'MyCustomFont', Arial, sans-serif;
-            background-image: url('Без названия181_20251122163802.png');
+            background-image: url('background.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             color: #000000;
             line-height: 1.6;
-            transition: all 0.3s ease;
         }
 
-        /* Главная плашка */
         .main-card {
             background-color: rgba(255, 255, 255, 0.95);
             margin: 40px auto;
@@ -37,39 +33,30 @@
             border-radius: 12px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
             max-width: 800px;
-            position: relative;
             backdrop-filter: blur(10px);
         }
 
-        /* Тёмная тема */
         body.dark-theme .main-card {
             background-color: rgba(45, 45, 45, 0.95);
         }
 
-        /* Заголовки */
         h1 {
             font-size: 2.2em;
             margin-bottom: 20px;
             color: #000000;
-            font-weight: 300;
-            letter-spacing: 1px;
         }
 
         h2 {
             font-size: 1.6em;
             margin-bottom: 15px;
             color: #000000;
-            font-weight: 400;
         }
 
-        /* Текст */
         p {
             margin-bottom: 15px;
-            font-size: 1.1em;
             color: #000000;
         }
 
-        /* Хеддер */
         .header {
             display: flex;
             justify-content: space-between;
@@ -77,7 +64,6 @@
             padding: 20px 40px;
         }
 
-        /* Кнопка меню-гамбургер */
         .menu-btn {
             background: rgba(255, 255, 255, 0.9);
             border: none;
@@ -86,16 +72,8 @@
             cursor: pointer;
             padding: 10px 15px;
             border-radius: 6px;
-            transition: all 0.3s;
-            backdrop-filter: blur(10px);
         }
 
-        .menu-btn:hover {
-            background: rgba(255, 255, 255, 1);
-            transform: translateY(-2px);
-        }
-
-        /* Кнопка темы */
         .theme-btn {
             background: rgba(255, 255, 255, 0.9);
             color: #000000;
@@ -103,17 +81,8 @@
             padding: 10px 20px;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
         }
 
-        .theme-btn:hover {
-            background: rgba(255, 255, 255, 1);
-            transform: translateY(-2px);
-        }
-
-        /* Боковое меню */
         .sidebar {
             position: fixed;
             left: -300px;
@@ -124,8 +93,6 @@
             padding: 80px 20px 20px;
             transition: left 0.3s ease;
             z-index: 1000;
-            box-shadow: 4px 0 16px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
         }
 
         body.dark-theme .sidebar {
@@ -139,47 +106,23 @@
         .sidebar h3 {
             color: #000000;
             margin-bottom: 20px;
-            font-size: 1.3em;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
         }
 
         body.dark-theme .sidebar h3 {
             color: #ffffff;
-            border-bottom: 1px solid #555;
-        }
-
-        .sidebar ul {
-            list-style: none;
-        }
-
-        .sidebar li {
-            margin-bottom: 12px;
         }
 
         .sidebar a {
             color: #000000;
             text-decoration: none;
-            font-size: 1.1em;
             padding: 8px 12px;
-            border-radius: 6px;
             display: block;
-            transition: background-color 0.3s;
-        }
-
-        .sidebar a:hover {
-            background-color: rgba(0, 0, 0, 0.1);
         }
 
         body.dark-theme .sidebar a {
             color: #ffffff;
         }
 
-        body.dark-theme .sidebar a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Оверлей */
         .overlay {
             position: fixed;
             top: 0;
@@ -195,30 +138,20 @@
             display: block;
         }
 
-        /* Контент */
-        .content {
-            margin-top: 20px;
-        }
-
         .monospace {
             font-family: 'Courier New', monospace;
             letter-spacing: 2px;
-            font-size: 1.2em;
-            color: #000000;
         }
     </style>
 </head>
 <body>
-    <!-- Хеддер -->
     <div class="header">
         <button class="menu-btn" onclick="toggleMenu()">☰</button>
         <button class="theme-btn" onclick="toggleTheme()">Тёмная тема</button>
     </div>
 
-    <!-- Оверлей -->
     <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
-    <!-- Боковое меню -->
     <div class="sidebar" id="sidebar">
         <h3>Мои статьи</h3>
         <ul>
@@ -231,14 +164,12 @@
         </ul>
     </div>
 
-    <!-- Основной контент -->
     <div class="main-card">
         <h1>本章节</h1>
         <h2>本章节</h2>
-        <div class="content">
+        <div>
             <p class="monospace">m e g m</p>
-            <p>Это пример текста в стиле вашего дизайна. Вы можете заменить этот текст на любой другой контент.</p>
-            <p>Сайт полностью адаптивен и имеет переключатель между светлой и тёмной темой.</p>
+            <p>Это мой сайт BS_SHOP</p>
         </div>
     </div>
 
@@ -253,21 +184,9 @@
         function toggleTheme() {
             const body = document.body;
             const themeBtn = document.querySelector('.theme-btn');
-            
             body.classList.toggle('dark-theme');
-            
-            if (body.classList.contains('dark-theme')) {
-                themeBtn.textContent = 'Светлая тема';
-            } else {
-                themeBtn.textContent = 'Тёмная тема';
-            }
+            themeBtn.textContent = body.classList.contains('dark-theme') ? 'Светлая тема' : 'Тёмная тема';
         }
-
-        document.querySelectorAll('.sidebar a').forEach(link => {
-            link.addEventListener('click', () => {
-                toggleMenu();
-            });
-        });
     </script>
 </body>
 </html>
