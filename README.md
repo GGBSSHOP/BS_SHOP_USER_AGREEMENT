@@ -4,8 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BS_SHOP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        /* Подключение кастомного шрифта */
+        @font-face {
+            font-family: 'MyCustomFont';
+            src: url('fonts/myfont.ttf') format('truetype'),
+                 url('fonts/myfont.woff') format('woff'),
+                 url('fonts/myfont.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         /* Базовые стили */
         * {
             margin: 0;
@@ -14,8 +23,8 @@
         }
 
         body {
-            font-family: 'Noto Sans Runic', sans-serif; /* Твой шрифт - можно поменять */
-            background-image: url('https://images.unsplash.com/photo-1505506874110-6a7a69069a08?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); /* Твой фон - замени ссылку */
+            font-family: 'MyCustomFont', Arial, sans-serif; /* Твой кастомный шрифт */
+            background-image: url('images/background.jpg'); /* Твой фон */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
