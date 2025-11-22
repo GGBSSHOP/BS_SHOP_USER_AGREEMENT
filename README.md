@@ -24,7 +24,7 @@
 
         body {
             font-family: 'MyCustomFont', Arial, sans-serif; /* Твой кастомный шрифт */
-            background-image: url('images/background.jpg'); /* Твой фон */
+            background-image: url('Без названия181_20251122163802.png'); /* Твой фон */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
