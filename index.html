@@ -124,6 +124,14 @@
             color: #ffffff;
         }
 
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
         .sidebar a {
             color: #000000;
             text-decoration: none;
@@ -175,6 +183,23 @@
         body.dark-theme .monospace {
             color: #ffffff;
         }
+
+        /* Убираем стандартные маркеры списка */
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        /* Создаем кастомные маркеры */
+        .sidebar li::before {
+            content: "•";
+            color: #000000;
+            margin-right: 8px;
+        }
+
+        body.dark-theme .sidebar li::before {
+            color: #ffffff;
+        }
     </style>
 </head>
 <body>
@@ -195,10 +220,10 @@
     </div>
 
     <div class="main-card">
-        <h2>пользовательское соглашение</h2>
+        <h1>пользовательское соглашение</h1>
         <div>
             <p class="monospace"></p>
-            <h1>Это мой сайт BS_SHOP</h1>
+            <h2>Это мой сайт BS_SHOP</h2>
         </div>
     </div>
 
