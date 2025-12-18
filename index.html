@@ -234,60 +234,79 @@
             color: #ffffff;
         }
 
-        /* Стили для куба */
+        /* Стили для куба как в твоём примере */
         .small-cube {
             margin-top: 30px;
             text-align: center;
             padding: 15px;
         }
 
-        .cube-3d {
-            width: 60px;
-            height: 60px;
-            position: relative;
-            transform-style: preserve-3d;
-            transform: rotateX(15deg) rotateY(15deg);
-            cursor: pointer;
+        /* Обёртка для перспективы */
+        .cube-wrap {
+            perspective: 1000px;
+            perspective-origin: 50% 50%;
             display: inline-block;
             margin-bottom: 8px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
         }
 
-        .cube-3d.rotating {
-            animation: cubeRotate 5s infinite linear;
-        }
-
-        .cube-3d:active {
-            transform: rotateX(15deg) rotateY(15deg) scale(0.95);
+        /* Сам куб */
+        .cube-3d {
+            position: relative;
+            height: 60px;
+            width: 60px;
+            transform-style: preserve-3d;
+            animation: rotate 5s infinite linear;
+            animation-play-state: paused;
+            cursor: pointer;
         }
 
         .cube-face {
             position: absolute;
-            width: 100%;
+            box-sizing: border-box;
             height: 100%;
-            background: #f0f0f0;
+            width: 100%;
+            opacity: 0.8;
             border: 1px solid #999;
-            opacity: 0.9;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
+            background-color: #f0f0f0;
         }
 
         body.dark-theme .cube-face {
-            background: #444;
+            background-color: #444;
             border-color: #666;
         }
 
-        .cube-front { transform: translateZ(30px); }
-        .cube-back { transform: rotateY(180deg) translateZ(30px); }
-        .cube-right { transform: rotateY(90deg) translateZ(30px); }
-        .cube-left { transform: rotateY(-90deg) translateZ(30px); }
-        .cube-top { transform: rotateX(90deg) translateZ(30px); }
-        .cube-bottom { transform: rotateX(-90deg) translateZ(30px); }
+        .front {
+            transform: translateZ(30px);
+        }
+
+        .back {
+            transform: rotateY(180deg) translateZ(30px);
+        }
+
+        .right {
+            transform: rotateY(90deg) translateZ(30px);
+        }
+
+        .left {
+            transform: rotateY(-90deg) translateZ(30px);
+        }
+
+        .top {
+            transform: rotateX(90deg) translateZ(30px);
+        }
+
+        .bottom {
+            transform: rotateX(-90deg) translateZ(30px);
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotateX(0) rotateY(0) rotateZ(0);
+            }
+            100% {
+                transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+            }
+        }
 
         .cube-warning {
             font-size: 12px;
@@ -300,13 +319,8 @@
             user-select: none;
         }
 
-        @keyframes cubeRotate {
-            0% {
-                transform: rotateX(15deg) rotateY(0deg);
-            }
-            100% {
-                transform: rotateX(15deg) rotateY(360deg);
-            }
+        body.dark-theme .cube-warning {
+            color: #ff6666;
         }
 
         /* Разрешаем выделение только текста в основном контенте */
@@ -365,13 +379,15 @@
         
         <!-- Маленький куб -->
         <div class="small-cube">
-            <div class="cube-3d" id="cube" onclick="toggleCubeRotation()">
-                <div class="cube-face cube-front"></div>
-                <div class="cube-face cube-back"></div>
-                <div class="cube-face cube-right"></div>
-                <div class="cube-face cube-left"></div>
-                <div class="cube-face cube-top"></div>
-                <div class="cube-face cube-bottom"></div>
+            <div class="cube-wrap">
+                <div class="cube-3d" id="cube" onclick="toggleCubeRotation()">
+                    <div class="cube-face front"></div>
+                    <div class="cube-face back"></div>
+                    <div class="cube-face right"></div>
+                    <div class="cube-face left"></div>
+                    <div class="cube-face top"></div>
+                    <div class="cube-face bottom"></div>
+                </div>
             </div>
             <div class="cube-warning">Не трогай его!</div>
         </div>
@@ -440,8 +456,8 @@
     </div>
 
     <script>
-        let isCubeRotating = false;
         const cube = document.getElementById('cube');
+        let rotationSpeed = 5; // начальная скорость (секунды на полный цикл)
         
         function toggleMenu() {
             const sidebar = document.getElementById('sidebar');
@@ -465,25 +481,46 @@
         }
 
         function toggleCubeRotation() {
-            if (isCubeRotating) {
-                cube.classList.remove('rotating');
+            if (cube.style.animationPlayState === 'paused' || cube.style.animationPlayState === '') {
+                cube.style.animationPlayState = 'running';
             } else {
-                cube.classList.add('rotating');
+                cube.style.animationPlayState = 'paused';
             }
-            isCubeRotating = !isCubeRotating;
         }
         
-        // Убираем стандартное поведение для всех кликов
-        document.addEventListener('mousedown', function(e) {
-            if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+        // Управление скоростью стрелками
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                
+                if (e.key === 'ArrowUp') {
+                    // Увеличиваем скорость (уменьшаем время)
+                    rotationSpeed = Math.max(1, rotationSpeed - 1);
+                } else if (e.key === 'ArrowDown') {
+                    // Уменьшаем скорость (увеличиваем время)
+                    rotationSpeed = Math.min(20, rotationSpeed + 1);
+                }
+                
+                // Обновляем скорость анимации
+                cube.style.animationDuration = `${rotationSpeed}s`;
+                
+                // Визуальная обратная связь
+                cube.style.transform = cube.style.transform + ' scale(1.1)';
+                setTimeout(() => {
+                    cube.style.transform = cube.style.transform.replace(' scale(1.1)', '');
+                }, 100);
+            }
+        });
+          
+        // Убираем выделение при клике на документ
+        document.addEventListener('selectstart', function(e) {
+            if (!e.target.closest('.main-card')) {
                 e.preventDefault();
             }
         });
         
-        // Убираем выделение при клике на документ
-        document.addEventListener('selectstart', function(e) {
-            e.preventDefault();
-        });
+        // При загрузке устанавливаем начальную скорость
+        cube.style.animationDuration = `${rotationSpeed}s`;
     </script>
 </body>
 </html>
