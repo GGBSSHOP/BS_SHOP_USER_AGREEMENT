@@ -15,6 +15,20 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent !important;
+            -webkit-touch-callout: none !important;
+        }
+
+        :focus {
+            outline: none !important;
+        }
+
+        ::selection {
+            background: transparent !important;
+        }
+
+        ::-moz-selection {
+            background: transparent !important;
         }
 
         body {
@@ -26,6 +40,10 @@
             color: #000000;
             line-height: 1.6;
             transition: all 0.3s ease;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         body.classic-font {
@@ -39,8 +57,8 @@
             border-radius: 12px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
             max-width: 800px;
-            height: calc(100vh - 120px); /* Занимает всю высоту экрана минус отступы */
-            overflow-y: auto; /* Прокрутка при необходимости */
+            height: calc(100vh - 120px);
+            overflow-y: auto;
             backdrop-filter: blur(10px);
         }
 
@@ -82,6 +100,10 @@
             padding: 10px 20px;
             border-radius: 20px;
             transition: all 0.3s ease;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         .menu-btn {
@@ -96,6 +118,13 @@
             background: rgba(45, 45, 45, 0.9);
             color: #ffffff;
             border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-btn:active, 
+        .theme-btn:active, 
+        .font-btn:active {
+            transform: scale(0.95);
+            transition: transform 0.1s;
         }
 
         .sidebar {
@@ -142,6 +171,10 @@
             display: block;
             transition: all 0.3s ease;
             border-radius: 4px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         .sidebar a:hover {
@@ -176,7 +209,6 @@
             letter-spacing: 2px;
         }
 
-        /* Стили для темной темы */
         body.dark-theme h1,
         body.dark-theme h2,
         body.dark-theme p {
@@ -187,13 +219,11 @@
             color: #ffffff;
         }
 
-        /* Убираем стандартные маркеры списка */
         ul {
             list-style: none;
             padding-left: 0;
         }
 
-        /* Создаем кастомные маркеры */
         .sidebar li::before {
             content: "•";
             color: #000000;
@@ -202,6 +232,118 @@
 
         body.dark-theme .sidebar li::before {
             color: #ffffff;
+        }
+
+        /* Стили для куба */
+        .small-cube {
+            margin-top: 30px;
+            text-align: center;
+            padding: 15px;
+        }
+
+        .cube-3d {
+            width: 60px;
+            height: 60px;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(15deg) rotateY(15deg);
+            cursor: pointer;
+            display: inline-block;
+            margin-bottom: 8px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .cube-3d.rotating {
+            animation: cubeRotate 5s infinite linear;
+        }
+
+        .cube-3d:active {
+            transform: rotateX(15deg) rotateY(15deg) scale(0.95);
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #f0f0f0;
+            border: 1px solid #999;
+            opacity: 0.9;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        body.dark-theme .cube-face {
+            background: #444;
+            border-color: #666;
+        }
+
+        .cube-front { transform: translateZ(30px); }
+        .cube-back { transform: rotateY(180deg) translateZ(30px); }
+        .cube-right { transform: rotateY(90deg) translateZ(30px); }
+        .cube-left { transform: rotateY(-90deg) translateZ(30px); }
+        .cube-top { transform: rotateX(90deg) translateZ(30px); }
+        .cube-bottom { transform: rotateX(-90deg) translateZ(30px); }
+
+        .cube-warning {
+            font-size: 12px;
+            color: #ff0000;
+            font-weight: bold;
+            margin-top: 5px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @keyframes cubeRotate {
+            0% {
+                transform: rotateX(15deg) rotateY(0deg);
+            }
+            100% {
+                transform: rotateX(15deg) rotateY(360deg);
+            }
+        }
+
+        /* Разрешаем выделение только текста в основном контенте */
+        .main-card h2,
+        .main-card p,
+        .main-card .monospace {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
+        /* Отключаем стандартное выделение в Firefox */
+        .main-card h2::-moz-selection,
+        .main-card p::-moz-selection,
+        .main-card .monospace::-moz-selection {
+            background: rgba(0, 150, 255, 0.3) !important;
+        }
+
+        .main-card h2::selection,
+        .main-card p::selection,
+        .main-card .monospace::selection {
+            background: rgba(0, 150, 255, 0.3) !important;
+        }
+
+        /* Отключаем outline для всех элементов */
+        button:focus,
+        a:focus,
+        div:focus {
+            outline: none !important;
+        }
+
+        /* Отключаем подсветку для интерактивных элементов в Safari */
+        button {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
         }
     </style>
 </head>
@@ -220,6 +362,19 @@
             <li><a href="https://ggbsshop.github.io/BS_SHOP_PRIVACY_POLICY/" target="_blank">Политика конфиденциальности BS_SHOP</a></li>
             <li><a href="https://ggbsshop.github.io/BS_SHOP_GUIDE_FOR_PARENTS/" target="_blank">Руководство для родителей BS_SHOP</a></li>
         </ul>
+        
+        <!-- Маленький куб -->
+        <div class="small-cube">
+            <div class="cube-3d" id="cube" onclick="toggleCubeRotation()">
+                <div class="cube-face cube-front"></div>
+                <div class="cube-face cube-back"></div>
+                <div class="cube-face cube-right"></div>
+                <div class="cube-face cube-left"></div>
+                <div class="cube-face cube-top"></div>
+                <div class="cube-face cube-bottom"></div>
+            </div>
+            <div class="cube-warning">Не трогай его!</div>
+        </div>
     </div>
 
     <div class="main-card">
@@ -285,6 +440,9 @@
     </div>
 
     <script>
+        let isCubeRotating = false;
+        const cube = document.getElementById('cube');
+        
         function toggleMenu() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('overlay');
@@ -305,6 +463,27 @@
             body.classList.toggle('classic-font');
             fontBtn.textContent = body.classList.contains('classic-font') ? 'Кастомный шрифт' : 'Классический шрифт';
         }
+
+        function toggleCubeRotation() {
+            if (isCubeRotating) {
+                cube.classList.remove('rotating');
+            } else {
+                cube.classList.add('rotating');
+            }
+            isCubeRotating = !isCubeRotating;
+        }
+        
+        // Убираем стандартное поведение для всех кликов
+        document.addEventListener('mousedown', function(e) {
+            if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+                e.preventDefault();
+            }
+        });
+        
+        // Убираем выделение при клике на документ
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+        });
     </script>
 </body>
 </html>
