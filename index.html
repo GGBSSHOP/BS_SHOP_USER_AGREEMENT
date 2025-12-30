@@ -618,7 +618,7 @@
     <!-- Верхняя панель с кнопкой меню и переключения шрифта -->
     <div class="top-header">
         <div class="header-left">
-            <button class="menu-btn" onclick="toggleMenu()">☰ Меню</button><button class="font-btn" id="fontToggleBtn">Классический шрифт</button>
+            <button class="menu-btn" onclick="toggleMenu()"><p><img src="1.svg" alt="иконка" style="vertical-align: -5.9px; margin-left: 1px;"></p></button><button class="font-btn" id="fontToggleBtn">Сменить шрифт</button>
         </div>
     </div>
     
@@ -997,7 +997,7 @@
                     </div>
                 </div>
                 
-                <div class="rules-section section-green">
+                <div class="rules-section section-orange">
                     <div class="section-title">
                         <span>🌐</span>
                         <span>Правила использования сайтов: 3.0</span>
@@ -1087,12 +1087,12 @@
             if (body.classList.contains('classic-font')) {
                 // Переключаем на DMC.ttf (шрифт по умолчанию)
                 body.classList.remove('classic-font');
-                fontToggleBtn.textContent = 'Классический шрифт';
+                fontToggleBtn.textContent = 'Сменить шрифт';
                 localStorage.setItem('preferredFont', 'dmc');
             } else {
                 // Переключаем на my-font.ttf (классический)
                 body.classList.add('classic-font');
-                fontToggleBtn.textContent = 'Кастомный шрифт';
+                fontToggleBtn.textContent = 'Сменить шрифт';
                 localStorage.setItem('preferredFont', 'classic');
             }
         }
@@ -1104,10 +1104,10 @@
             
             if (savedFont === 'classic') {
                 document.body.classList.add('classic-font');
-                fontToggleBtn.textContent = 'Кастомный шрифт';
+                fontToggleBtn.textContent = 'Сменить шрифт';
             } else {
                 document.body.classList.remove('classic-font');
-                fontToggleBtn.textContent = 'Классический шрифт';
+                fontToggleBtn.textContent = 'Сменить шрифт';
             }
             
             // Добавляем обработчик для кнопки
